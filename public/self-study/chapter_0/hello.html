@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>브라우저 JavaScript 실습</title>
+  </head>
+  <body>
+    <h1 id="title">JavaScript 실습</h1>
+    <button id="change-button">제목 변경</button>
+
+    <script>
+      console.log("JavaScript가 실행됐습니다.");
+
+      const button = document.querySelector("#change-button");
+      const title = document.querySelector("#title");
+
+      button.addEventListener("click", () => {
+        title.textContent = "버튼을 클릭했습니다!";
+        console.log("버튼 클릭!");
+      });
+    </script>
+  </body>
+</html>

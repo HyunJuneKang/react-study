@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script defer src="./section2.js" type="text/javascript"></script>
+    <h1>JavaScript복습</h1>
+    <div id="here">여기</div>
+
+    <script src="./section1.js" type="text/javascript"></script>
+    <!--type이 모듈이면 HTML이 모두 load된 후에 js가 실행   -->
+    <script>
+      console.dir(this);
+      console.log(`internal JS에서 외부js의 변수 사용: ${v1}`);
+    </script>
+  </body>
+</html>

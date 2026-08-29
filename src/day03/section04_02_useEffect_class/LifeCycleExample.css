@@ -1,0 +1,67 @@
+/* 전체 컨테이너 스타일 */
+.parent-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 2px solid #6c757d;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  font-family: sans-serif;
+}
+
+.parent-container h3 {
+  color: #343a40;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* 버튼 그룹 스타일 */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.button-group button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #6c757d;
+  color: white;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.button-group button:hover {
+  background-color: #495057;
+}
+
+.button-group button:active {
+  transform: scale(0.98);
+}
+
+/* 자식 컴포넌트 컨테이너 스타일 */
+.child-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px dashed #17a2b8;
+  border-radius: 12px;
+  background-color: #e3f2fd;
+}
+
+.child-box h4 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.child-box p {
+  margin: 0;
+  color: #333;
+}
