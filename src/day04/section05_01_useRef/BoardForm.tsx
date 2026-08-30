@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 /*
-함수형Componet에서 사용하는 기능제공 
+함수형Component에서 사용하는 기능제공 
 useState()....상태관리, 값이바뀌면 UI다시그린다. 
 useEffect()....LifeCycle   useEffect(f, [aa])
 useRef()....DOM접근 , 리렌더링되어도 값초기화안됨

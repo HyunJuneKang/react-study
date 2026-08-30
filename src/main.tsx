@@ -1,15 +1,9 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import {
-  MyFunctionComp1,
-  MyFunctionComp2,
-  MyFunctionComp3,
-} from "./day01/section01/TestComp1";
 import React from "react";
-import App3 from "./day01/section01/App3";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import CounterApp from "./day02/section04_02_useEffect_class/CounterApp";
+import BranchDashboard from "./day04/section05_04_useCallback_useMemo/BranchDashboard";
 
 const score = 100;
 const element1 = <h1>Hello!</h1>;
@@ -33,12 +27,6 @@ const virtualDOM = (
       value="신한DS"
       style={{ backgroundColor: "yellow", padding: "20px" }}
     ></input>
-    <MyFunctionComp1 />
-    <MyFunctionComp1 />
-    <MyFunctionComp2 />
-    <MyFunctionComp2 />
-    <MyFunctionComp3 />
-    <App3 />
   </>
 );
 // 이전 학습 예제는 보관하되 현재 루트에는 Section2Start만 렌더링한다.
@@ -47,6 +35,6 @@ void virtualDOM;
 //물리 DOM #root <div id="root"></div>
 createRoot(document.getElementById("root")!).render(
   <div>
-    <CounterApp />
+    <BranchDashboard />
   </div>,
 );
