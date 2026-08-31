@@ -23,6 +23,7 @@ export default function Board() {
     setBoardList((previousList) => [...previousList, board]);
     setBoard(initBoard);
   };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
     const key = name as keyof Board;
