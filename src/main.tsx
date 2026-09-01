@@ -1,11 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import TodoListApp from "./day05/section07_practice/components/TodoListApp";
-// import SqlStudyApp from "./sqlstudy/SqlStudyApp";
+import DiaryApp from "./day06/section11_practice_diary/util/DiaryApp";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <TodoListApp /> 
+    <div className="flex h-screen bg-gray-100">
+      <BrowserRouter>
+        <DiaryApp />
+      </BrowserRouter>
+    </div>
   </StrictMode>,
 );

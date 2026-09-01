@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc -b && vite build",
+    "build:sql:single": "vite build && node scripts/build-standalone.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "study:hello": "node public/self-study/chapter_0/hello.js",
@@ -20,6 +21,7 @@
     "react": "^19.2.8",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.3",
     "zustand": "^5.0.15"
   },
   "devDependencies": {

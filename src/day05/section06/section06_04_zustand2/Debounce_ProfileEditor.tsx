@@ -8,6 +8,7 @@ export default function Debounce_ProfileEditor() {
   const handleAgeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAge(Number(e.target.value));
   };
+
   const [keyword, setKeyword] = useState("");
   const debouncedKeyword = useDebounce(keyword, 500);
   const [apiCallCount, setApiCallCount] = useState(0);

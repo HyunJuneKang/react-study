@@ -31,15 +31,15 @@ export default function JoinVisualizerPage() {
     });
   }
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-8 text-slate-900 sm:px-6 lg:py-12">
+    <section className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 px-4 py-7 text-slate-900 shadow-sm sm:px-6 lg:p-8">
       <div className="mx-auto max-w-5xl">
         <header className="mb-8">
           <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
-            SQL Study
+            Interactive Lab
           </p>
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            INNER JOIN vs LEFT JOIN
-          </h1>
+          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+            JOIN 결과 직접 비교하기
+          </h2>
           <p className="mt-3 max-w-2xl leading-7 text-slate-600">
             조인 방식을 선택하고 같은 데이터에서 결과 행이 어떻게 달라지는지
             확인해보세요.
@@ -133,6 +133,7 @@ export default function JoinVisualizerPage() {
 
         <div className="my-6 flex flex-wrap gap-3" aria-label="조인 방식 선택">
           <button
+            type="button"
             onClick={() => setJoinType("inner")}
             className={`rounded-lg px-5 py-3 font-bold text-white transition hover:-translate-y-0.5 ${
               joinType === "inner"
@@ -144,6 +145,7 @@ export default function JoinVisualizerPage() {
           </button>
 
           <button
+            type="button"
             onClick={() => setJoinType("left")}
             className={`rounded-lg px-5 py-3 font-bold text-white transition hover:-translate-y-0.5 ${
               joinType === "left"
@@ -197,6 +199,6 @@ export default function JoinVisualizerPage() {
           </div>
         </section>
       </div>
-    </main>
+    </section>
   );
 }
