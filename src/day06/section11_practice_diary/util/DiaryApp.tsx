@@ -1,34 +1,123 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import New from "../pages/New";
 import Diary from "../pages/Diary";
 import Editor from "../pages/Editor";
+import "./DiaryApp.css";
+import { useEffect, useReducer, useRef, useState } from "react";
+import { mockData } from "../data/mockData.ts";
+import {
+  DiaryDispatchContext,
+  DiaryStateContext,
+  type DiaryData,
+} from "./DiaryContext";
+
+type Action =
+  | { type: "INIT"; data: DiaryData[] }
+  | { type: "CREATE"; data: DiaryData }
+  | { type: "UPDATE"; data: DiaryData }
+  | { type: "DELETE"; targetId: number };
 
 export default function DiaryApp() {
-  return (
-    <div className="flex min-h-full">
-      <aside className="flex w-48 shrink-0 flex-col bg-slate-800 p-4 text-white">
-        <h2 className="mb-6 text-lg font-bold">감정 일기장</h2>
+  const [data, dispatch] = useReducer(reducer, []);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const idRef = useRef(0);
 
-        <nav className="flex flex-col gap-3 text-sm">
-          <Link to="/">일기 홈</Link>
-          <Link to="/diary/:id">일기 목록</Link>
-          <Link to="new">새 일기 작성</Link>
-          <Link to="edit">새 일기 수정</Link>
-        </nav>
-      </aside>
+  useEffect(() => {
+    dispatch({
+      type: "INIT",
+      data: mockData,
+    });
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsDataLoaded(true);
+  }, []);
 
-      <main className="min-w-0 flex-1 p-6">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/diary/:id" element={<Diary />} />
-          <Route path="new" element={<New />} />
-          <Route
-            path="edit"
-            element={<Editor initData={null} onSubmit={null} />}
-          />
-        </Routes>
-      </main>
-    </div>
-  );
+  const onCreate = (date: Date, content: string, emotionId: number) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: idRef.current,
+        date: new Date(date).getTime(),
+        content,
+        emotionId,
+      },
+    });
+    idRef.current += 1;
+  };
+
+  const onUpdate = (
+    targetId: number,
+    date: Date,
+    content: string,
+    emotionId: number,
+  ) => {
+    dispatch({
+      type: "UPDATE",
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        content,
+        emotionId,
+      },
+    });
+  };
+
+  const onDelete = (targetId: number) => {
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
+  };
+
+  function reducer(state: DiaryData[], action: Action): DiaryData[] {
+    switch (action.type) {
+      case "INIT": {
+        return action.data;
+      }
+
+      case "CREATE": {
+        return [action.data, ...state];
+      }
+
+      case "UPDATE": {
+        return state.map((it) => (it.id === action.data.id ? action.data : it));
+      }
+
+      case "DELETE": {
+        return state.filter((it) => it.id !== action.targetId);
+      }
+
+      default: {
+        return state;
+      }
+    }
+  }
+
+  if (!isDataLoaded) {
+    return <div>데이터를 불러오는 중입니다.</div>;
+  } else {
+    return (
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider
+          value={{
+            onCreate,
+            onUpdate,
+            onDelete,
+          }}
+        >
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/diary/:id" element={<Diary />} />
+              <Route path="/new/:id" element={<New />} />
+              <Route
+                path="edit"
+                element={<Editor initData={null} onSubmit={null} />}
+              />
+            </Routes>
+          </div>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
+    );
+  }
 }

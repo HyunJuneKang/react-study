@@ -12,7 +12,7 @@ export default function Editor({ initData, onSubmit }) {
     content: "",
   });
 
-  const handleChangeDate = (e: ChangeEvent<HTMLDataElement>) => {
+  const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, date: e.target.value });
   };
   const handleChangeContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,12 +31,12 @@ export default function Editor({ initData, onSubmit }) {
   };
 
   useEffect(() => {
-    if (initData) {
-      setState({
-        ...initData,
-        date: getFormattedDate(new Date(parseInt(initData.date))),
-      });
-    }
+    if (!initData) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setState({
+      ...initData,
+      date: getFormattedDate(new Date(Number(initData.date))),
+    });
   }, [initData]);
 
   return (
