@@ -1,4 +1,4 @@
-import "./EmotionItem.css";
+import "@/day06/section11_practice_diary/components/EmotionItem.css";
 type EmotionItemType = {
   id: number;
   img: string;

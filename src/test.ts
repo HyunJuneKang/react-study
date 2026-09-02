@@ -1,19 +1,17 @@
 // ------------------------------------------------------------
-// [문제 0] 백지 복습 (6강) — async / Promise.all
-// 아래 getFee 는 가짜 서버다 (타입 표기가 붙은 것만 다르다 — 읽어볼 것).
-// async 함수 totalFee() 를 작성하라:
-//   getFee(1) 과 getFee(2) 를 "동시에" 요청해 합계를 리턴. (결과: 75000)
+// [문제 5] 종합 — 리터럴 유니온 + 배열 메서드 (2강 결합)
+// namesByStatus(list, status) 함수를 작성하라:
+//   list   : { name: string; status: ContractStatus }[] 타입
+//   status : ContractStatus 타입
+//   해당 status 인 항목들의 name 배열을 리턴 (string[]).
+//   힌트: filter 다음 map
 // ------------------------------------------------------------
-const getFee = async (id: number): Promise<number> =>
-  id === 1 ? 30000 : 45000;
+type ContractStatus = "DRAFT" | "ACTIVE" | "DONE";
 
-// 여기에 작성:
-async function totalFee() {
-  try {
-    const [first, second] = await Promise.all([getFee(1), getFee(2)]);
-    return first + second;
-  } catch (error) {
-    console.log(error);
-  }
-}
-totalFee();
+type listType = {
+  name: string;
+  status: ContractStatus;
+};
+const namesByStatus = (list: listType[], status: ContractStatus) => {
+  return list.filter((item) => item.status === status).map((item) => item.name);
+};

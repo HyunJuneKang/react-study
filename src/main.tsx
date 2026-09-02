@@ -1,15 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import "./index.css";
-import DiaryApp from "./day06/section11_practice_diary/util/DiaryApp";
+import "@/index.css";
+import StartApp from "@/StartApp";
+import { AuthProvider } from "@/day07/section12_02_auth/AuthProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <div className="flex h-screen bg-gray-100">
-      <BrowserRouter>
-        <DiaryApp />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <StartApp />
+      </AuthProvider>
+    </BrowserRouter>
   </StrictMode>,
 );

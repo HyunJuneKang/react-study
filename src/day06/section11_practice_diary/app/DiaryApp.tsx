@@ -1,27 +1,25 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
-import New from "../pages/New";
-import Diary from "../pages/Diary";
-import Editor from "../pages/Editor";
-import "./DiaryApp.css";
+import { Outlet } from "react-router-dom";
+import "@/day06/section11_practice_diary/app/DiaryApp.css";
 import { useEffect, useReducer, useRef, useState } from "react";
-import { mockData } from "../data/mockData.ts";
+import { mockData } from "@/day06/section11_practice_diary/data/mockData.ts";
 import {
   DiaryDispatchContext,
   DiaryStateContext,
-  type DiaryData,
-} from "./DiaryContext";
+} from "@/day06/section11_practice_diary/contexts/DiaryContext";
+import type { Diary as DiaryEntry } from "@/day06/section11_practice_diary/types/diary";
 
 type Action =
-  | { type: "INIT"; data: DiaryData[] }
-  | { type: "CREATE"; data: DiaryData }
-  | { type: "UPDATE"; data: DiaryData }
+  | { type: "INIT"; data: DiaryEntry[] }
+  | { type: "CREATE"; data: DiaryEntry }
+  | { type: "UPDATE"; data: DiaryEntry }
   | { type: "DELETE"; targetId: number };
 
 export default function DiaryApp() {
   const [data, dispatch] = useReducer(reducer, []);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const idRef = useRef(0);
+  const idRef = useRef(
+    Math.max(...mockData.map((diary) => diary.id), 0) + 1,
+  );
 
   useEffect(() => {
     dispatch({
@@ -69,7 +67,7 @@ export default function DiaryApp() {
     });
   };
 
-  function reducer(state: DiaryData[], action: Action): DiaryData[] {
+  function reducer(state: DiaryEntry[], action: Action): DiaryEntry[] {
     switch (action.type) {
       case "INIT": {
         return action.data;
@@ -106,15 +104,7 @@ export default function DiaryApp() {
           }}
         >
           <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/new/:id" element={<New />} />
-              <Route
-                path="edit"
-                element={<Editor initData={null} onSubmit={null} />}
-              />
-            </Routes>
+            <Outlet />
           </div>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>

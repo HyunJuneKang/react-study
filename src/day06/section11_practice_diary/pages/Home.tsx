@@ -1,9 +1,9 @@
 import { useContext, useMemo, useState } from "react";
-import Button from "../component/Button";
-import { Header } from "../component/Header";
-import { DiaryStateContext } from "../util/DiaryContext";
-import { getMonthRangeByDate } from "../util/getMonthRangeByDate";
-import { DiaryList } from "./DiaryList";
+import Button from "@/day06/section11_practice_diary/components/Button";
+import { Header } from "@/day06/section11_practice_diary/components/Header";
+import { DiaryStateContext } from "@/day06/section11_practice_diary/contexts/DiaryContext";
+import { getMonthRangeByDate } from "@/day06/section11_practice_diary/utils/getMonthRangeByDate";
+import { DiaryList } from "@/day06/section11_practice_diary/components/DiaryList";
 export default function Home() {
   const data = useContext(DiaryStateContext);
   const [pivotDate, setPivotDate] = useState(new Date());
@@ -26,10 +26,9 @@ export default function Home() {
     <div>
       <Header
         title={headerTitle}
-        leftChild={<Button text={"<"} onClick={onIncreaseMonth} />}
-        rightChild={<Button text={">"} onClick={onDecreaseMonth} />}
+        leftChild={<Button text={"<"} onClick={onDecreaseMonth} />}
+        rightChild={<Button text={">"} onClick={onIncreaseMonth} />}
       />
-      Home 페이지 입니다.
       <DiaryList data={filteredData} />
     </div>
   );

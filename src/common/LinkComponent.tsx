@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/react.svg";
 import vite from "@/assets/vite.svg";
+import { SidebarAuthSection } from "@/day07/section12_02_auth/components/SidebarAuthSection";
 /* ===== Sidebar ====  public폴더의 이미지는 경로 직접사용(그대로배포), 
         src폴더의 이미지는 import하여사용(build시 번들링됨)  */
 
@@ -30,11 +31,8 @@ export default function LinkComponent() {
         <Link to="/diary" className="sidebar-link">
           감정 일기장
         </Link>
-
-        <Link to="/diary/new" className="sidebar-link">
-          새 일기 작성
-        </Link>
       </nav>
+      <SidebarAuthSection />
       <div className="mt-auto text-xs text-gray-400">CSR / Router 실습</div>
     </aside>
   );

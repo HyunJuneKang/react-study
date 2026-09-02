@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./Header.css";
+import "@/day06/section11_practice_diary/components/Header.css";
 
 type HeaderProps = {
   title: string;

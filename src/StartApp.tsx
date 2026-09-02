@@ -7,9 +7,10 @@ import BoardHome from "./day06/section10_board_zustand_params/components/BoardHo
 import TodoListAppZun from "./day05/section07_practice_context/components/TodoListAppZun";
 import Home from "./day06/section11_practice_diary/pages/Home";
 import New from "./day06/section11_practice_diary/pages/New";
-import Edit from "./day06/section11_practice_diary/pages/Editor";
 import Diary from "./day06/section11_practice_diary/pages/Diary";
-import DiaryApp from "./day06/section11_practice_diary/util/DiaryApp";
+import Edit from "./day06/section11_practice_diary/pages/Edit";
+import DiaryApp from "./day06/section11_practice_diary/app/DiaryApp";
+import AuthPage from "./day07/section12_02_auth/components/AuthPage";
 
 function StartApp() {
   return (
@@ -28,6 +29,7 @@ function StartApp() {
             <Route path="/todo" element={<TodoListAppZun />} />
             <Route path="/board-mock" element={<BoardListApp />} />
             <Route path="/board/*" element={<BoardHome />} />
+            <Route path="/auth" element={<AuthPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

@@ -1,22 +1,18 @@
 import { createContext } from "react";
+import type { Diary } from "@/day06/section11_practice_diary/types/diary";
 
-export type DiaryData = {
-  id: number;
-  date: number;
-  content: string;
-  emotionId: number;
-};
-
-export const DiaryStateContext = createContext<DiaryData[]>([]);
+export const DiaryStateContext = createContext<Diary[]>([]);
 
 type DiaryDispatchContextType = {
   onCreate: (date: Date, content: string, emotionId: number) => void;
+
   onUpdate: (
     targetId: number,
     date: Date,
     content: string,
     emotionId: number,
   ) => void;
+
   onDelete: (targetId: number) => void;
 };
 export const DiaryDispatchContext =

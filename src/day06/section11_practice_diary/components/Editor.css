@@ -1,12 +1,10 @@
-.Editor {
-}
-
 .Editor .editor_section {
   margin-bottom: 40px;
 }
 
 .Editor .emotion_list_wrapper {
   display: flex;
+
   justify-content: space-around;
   gap: 2%;
 }
